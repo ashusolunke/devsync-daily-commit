@@ -2,8 +2,11 @@ name: Daily Commit Automation
 
 on:
   schedule:
-    - cron: '10 4 * * *'   # Runs daily at 4:10 UTC
+    - cron: '10 4 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   auto-commit:
@@ -14,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 24f1000952@ds.study.iitm.ac.in
-        run: echo "Daily update at $(date)" >> update.txt
+        run: echo "Daily update at $(date +%s)" >> update.txt
 
       - name: Commit Changes
         run: |
