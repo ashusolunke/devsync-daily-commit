@@ -1,0 +1,25 @@
+name: Daily Commit Automation
+
+on:
+  schedule:
+    - cron: '10 4 * * *'   # Runs daily at 4:10 UTC
+  workflow_dispatch:
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 24f1000952@ds.study.iitm.ac.in
+        run: echo "Daily update at $(date)" >> update.txt
+
+      - name: Commit Changes
+        run: |
+          git config --global user.name "Ashutosh Solunke"
+          git config --global user.email "24f1000952@ds.study.iitm.ac.in"
+          git add .
+          git commit -m "Automated daily commit"
+          git push
